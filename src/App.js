@@ -1,12 +1,20 @@
 import React, {Fragment} from 'react';
-
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import './App.css'
 
 function App() {
+
     return (
         <Fragment className="App">
-            <h1>Start Blog Pproject</h1>
+            <Navbar/>
+            <div className="container">
+                <Home/>
+            </div>
         </Fragment>
     );
 }
 
 export default App;
+
+
