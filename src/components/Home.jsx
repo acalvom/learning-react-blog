@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import './Home.css'
 import EntriesList from "./EntriesList";
 
@@ -13,6 +13,12 @@ const Home = () => {
         {id: 4, title: "Bye bye", content: 'This is the fifth post', author: 'acm'},
         {id: 5, title: "Ciao", content: 'This is the sixth post', author: 'acm'}
     ]);
+    const [name, setName] = useState('Andrea');
+
+    useEffect(() => {
+        console.log('Render')
+        document.title = name;
+    }, [name]) // useEffect Dependency: [] solo lo ejecuta una vez, [name] solo lo ejecuta cuando "name" cambia
 
     const handleClick = () => {
         setEntry({id: entry.id + 1, title: "Hi!", content: 'This is a new entry', author: 'wiwi'})
@@ -22,6 +28,9 @@ const Home = () => {
         ]);
     }
 
+    const handleNameClick = () => {
+        setName(name.split("").reverse().join(""));
+    }
     const handleDeleteClick = (id) => {
         setBlog(blog.filter(item => item.id !== id))
     }
@@ -33,6 +42,10 @@ const Home = () => {
                     <div className="col-sm">
                         <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>
                         <button type="button" className="btn btn-primary" onClick={handleClick}>New entry</button>
+                    </div>
+                    <div className="col-sm">
+                        <h2>{name}</h2>
+                        <button type="button" className="btn btn-primary" onClick={handleNameClick}>Click here</button>
                     </div>
                 </div>
             </div>
