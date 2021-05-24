@@ -3,10 +3,7 @@ import React from 'react';
 const EntriesList = (props) => {
     const blog = props.entries;
     const title = props.pageTitle;
-
-    const handleDeleteClick = (id) => {
-        console.log('Delete id ', id)
-    }
+    const handleDeleteClick = props.delete;
 
     return (
         <div>

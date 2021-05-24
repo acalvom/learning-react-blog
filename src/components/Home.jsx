@@ -14,9 +14,6 @@ const Home = () => {
         {id: 5, title: "Ciao", content: 'This is the sixth post', author: 'acm'}
     ]);
 
-    const acmEntries = blog.filter(item => item.author === 'acm');
-    const acalvomEntries = blog.filter(item => item.author === 'acalvom');
-
     const handleClick = () => {
         setEntry({id: entry.id + 1, title: "Hi!", content: 'This is a new entry', author: 'wiwi'})
         setBlog([
@@ -24,19 +21,18 @@ const Home = () => {
             entry
         ]);
     }
+
+    const handleDeleteClick = (id) => {
+        setBlog(blog.filter(item => item.id !== id))
+    }
+
     return (
         <Fragment>
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <EntriesList entries={blog} pageTitle={"Blog Entries"}/>
+                        <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>
                         <button type="button" className="btn btn-primary" onClick={handleClick}>New entry</button>
-                    </div>
-                    <div className="col-sm">
-                        <EntriesList entries={acmEntries} pageTitle={"acm Entries"}/>
-                    </div>
-                    <div className="col-sm">
-                        <EntriesList entries={acalvomEntries} pageTitle={"acalvom Entries"}/>
                     </div>
                 </div>
             </div>
