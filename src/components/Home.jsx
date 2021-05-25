@@ -5,6 +5,7 @@ import EntriesList from "./EntriesList";
 const Home = () => {
 
     const [blog, setBlog] = useState([]);
+    const [isPending, setIsPending] = useState(true);
 
     useEffect(() => {
         fetchBlogs().then()
@@ -13,6 +14,7 @@ const Home = () => {
     const fetchBlogs = async () => {
         const data = await fetch('http://localhost:8000/blog');
         const blog = await data.json();
+        setIsPending(false);
         setBlog(blog);
         /* Otra forma sin async / await
         fetch('http://localhost:8000/blog')
@@ -34,6 +36,7 @@ const Home = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
+                        {isPending && <div><h2>Fetching data...</h2></div>}
                         <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>
                     </div>
                 </div>
