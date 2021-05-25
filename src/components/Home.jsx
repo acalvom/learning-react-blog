@@ -1,33 +1,15 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment} from 'react';
 import './Home.css'
 import EntriesList from "./EntriesList";
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-
-    const [blog, setBlog] = useState([]);
-    const [isPending, setIsPending] = useState(true);
-    const [fetchError, setFetchError] = useState(null);
-
-    useEffect(() => {
-        fetchBlogs().catch(e => {
-            setFetchError(e.message)
-        })
-    }, []) // useEffect Dependency: [] solo lo ejecuta una vez, [name] solo lo ejecuta cuando "name" cambia
-
-    const fetchBlogs = async () => {
-        const data = await fetch('http://localhost:8000/blog');
-        if (!data.ok)
-            throw new Error(`HTTP error status: ${data.status}`)
-         else {
-            const blog = await data.json();
-            setIsPending(false);
-            setFetchError(null);
-            setBlog(blog);
-        }
-    }
+    const {data: blog, isPending, fetchError} = useFetch('http://localhost:8000/blog');
 
     const handleDeleteClick = (id) => {
-        setBlog(blog.filter(item => item.id !== id))
+        // Esta función no tiene mucho sentido ahora porque los datos están en una BD
+        console.log(id)
+        return (blog.filter(item => item.id !== id))
     }
 
     return (
@@ -36,7 +18,7 @@ const Home = () => {
                 <div className="row">
                     <div className="col-sm">
                         {isPending && <div><h2>Fetching data...</h2></div>}
-                        <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>
+                        {blog && <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>}
                         {fetchError && <div><h3>{fetchError}</h3></div>}
                     </div>
                 </div>
