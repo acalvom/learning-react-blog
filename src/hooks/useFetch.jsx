@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 /* ------ Custom Hook ------
  * Como parámetros de entrada recibe la url del API donde están los datos
@@ -26,9 +26,11 @@ const useFetch = (url) => {
     }
 
     useEffect(() => {
-        fetchData().catch(e => {
-            setFetchError(e.message)
-        })
+        setTimeout(() => {
+            fetchData().catch(e => {
+                setFetchError(e.message)
+            })
+        }, 1000)
     }, [url])
 
     return {data, isPending, fetchError}
