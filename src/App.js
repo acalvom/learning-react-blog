@@ -1,17 +1,22 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import './App.css'
+import NewEntryForm from "./components/NewEntryForm";
 
 function App() {
 
     return (
-        <Fragment>
+        <Router>
             <Navbar/>
             <div className="container my-3">
-                <Home/>
+                <Switch>
+                    <Route exact path="/"><Home/></Route>
+                    <Route path="/new-entry"><NewEntryForm/></Route>
+                </Switch>
             </div>
-        </Fragment>
+        </Router>
     );
 }
 
