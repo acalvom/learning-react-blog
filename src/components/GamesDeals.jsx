@@ -10,12 +10,32 @@ const GamesDeals = () => {
             <div className="row">
                 <div className="col-sm">
                     {isPending && <div><h2>Fetching data...</h2></div>}
-                    {
-                        deals.map((item) =>
-                            <li key={item.dealID}>
-                                {item.title} - {item.normalPrice} - {item.salePrice}
-                            </li>)
-                    }
+                    <table className="table table-sm table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Game</th>
+                            <th>Normal Price</th>
+                            <th>Discount</th>
+                            <th>Sale Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            deals.length > 0 ?
+                                deals.map((item) =>
+                                    <tr key={item.dealID}>
+                                        <td> {item.title}</td>
+                                        <td> {item.normalPrice}</td>
+                                        <td> {item.savings}</td>
+                                        <td> {item.salePrice}</td>
+                                    </tr>
+                                ) :
+                                <tr>
+                                    <td colSpan={3}> No users</td>
+                                </tr>
+                        }
+                        </tbody>
+                    </table>
                     {fetchError && <div><h3>{fetchError}</h3></div>}
                 </div>
             </div>
