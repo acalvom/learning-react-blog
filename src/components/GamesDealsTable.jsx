@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const GamesDealsTable = (props) => {
     const deals = props.data;
@@ -26,10 +27,13 @@ const GamesDealsTable = (props) => {
                                 <td> {item.normalPrice}</td>
                                 <td> {item.savings}</td>
                                 <td> {item.salePrice}</td>
+                                <td>
+                                    <Link to={`/games-deals/${item.dealID}`}> Details</Link>
+                                </td>
                             </tr>
                         ) :
                         <tr>
-                            <td colSpan={3}> No users</td>
+                            <td colSpan={3}> No games to show</td>
                         </tr>
                 }
                 </tbody>

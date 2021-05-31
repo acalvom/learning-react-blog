@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import './App.css'
 import NewEntryForm from "./components/NewEntryForm";
 import GamesDeals from "./components/GamesDeals";
+import GameDealDetail from "./components/GameDealDetail";
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
                 <Switch>
                     <Route exact path="/"><Home/></Route>
                     <Route path="/new-entry"><NewEntryForm/></Route>
-                    <Route path="/games-deals"><GamesDeals/></Route>
+                    <Route exact path="/games-deals"><GamesDeals/></Route>
+                    <Route path="/games-deals/:id"><GameDealDetail/></Route>
                 </Switch>
             </div>
         </Router>
