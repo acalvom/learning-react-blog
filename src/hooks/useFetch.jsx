@@ -13,21 +13,20 @@ const useFetch = (url) => {
     const [isPending, setIsPending] = useState(true);
     const [fetchError, setFetchError] = useState(null);
 
-    const abortController = new AbortController();
-
-    const fetchData = async () => {
-        const response = await fetch(url, {signal: abortController.signal});
-        if (!response.ok)
-            throw new Error(`HTTP error status: ${response.status}`)
-        else {
-            let data = await response.json();
-            setIsPending(false);
-            setFetchError(null);
-            setData(data);
-        }
-    }
-
     useEffect(() => {
+        const abortController = new AbortController();
+        const fetchData = async () => {
+            const response = await fetch(url, {signal: abortController.signal});
+            if (!response.ok)
+                throw new Error(`HTTP error status: ${response.status}`)
+            else {
+                let data = await response.json();
+                setIsPending(false);
+                setFetchError(null);
+                setData(data);
+            }
+        }
+
         setTimeout(() => {
             fetchData()
                 .catch(e => {
