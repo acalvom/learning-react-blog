@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import './App.css'
 import NewEntryForm from "./components/NewEntryForm";
+import GamesDeals from "./components/GamesDeals";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
                 <Switch>
                     <Route exact path="/"><Home/></Route>
                     <Route path="/new-entry"><NewEntryForm/></Route>
+                    <Route path="/games-deals"><GamesDeals/></Route>
                 </Switch>
             </div>
         </Router>
