@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import './GamesDealsTable.css'
 
 const GamesDealsTable = (props) => {
     const deals = props.data;
@@ -23,13 +24,12 @@ const GamesDealsTable = (props) => {
                     deals.length > 0 ?
                         deals.map((item) =>
                             <tr key={item.dealID}>
-                                <td> {item.title}</td>
+                                <td>
+                                    <Link to={`/games-deals/${item.dealID}`}> {item.title}</Link>
+                                </td>
                                 <td> {item.normalPrice}</td>
                                 <td> {item.savings}</td>
                                 <td> {item.salePrice}</td>
-                                <td>
-                                    <Link to={`/games-deals/${item.dealID}`}> Details</Link>
-                                </td>
                             </tr>
                         ) :
                         <tr>
