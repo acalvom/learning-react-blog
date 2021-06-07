@@ -7,6 +7,7 @@ import GamesDeals from "./components/gamesdeals/GamesDeals";
 import GameDealDetail from "./components/gamesdeals/GameDealDetail";
 import EntryDetail from "./components/blog/EntryDetail";
 import './App.css'
+import NewEntryFormBlock from "./components/blog/NewEntryFormBlock";
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
                 <Switch>
                     <Route exact path="/"><Home/></Route>
                     <Route path="/blog/:id"><EntryDetail/></Route>
-                    <Route path="/new-entry"><NewEntryForm/></Route>
+                    <Route path="/new-entry"><NewEntryFormBlock/></Route>
                     <Route exact path="/games-deals"><GamesDeals/></Route>
                     <Route path="/games-deals/:id"><GameDealDetail/></Route>
                 </Switch>
