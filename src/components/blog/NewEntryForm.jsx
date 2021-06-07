@@ -5,8 +5,14 @@ const NewEntryForm = () => {
     const [author, setAuthor] = useState('acalvom');
     const [content, setContent] = useState('');
 
+    const handleSubmitForm = (event) => {
+        event.preventDefault();
+        const entry = {title, author, content}
+        console.log(entry);
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmitForm}>
             <div className="form-group">
                 <label>Title</label>
                 <input type="text" className="form-control" id="title" required
@@ -34,10 +40,7 @@ const NewEntryForm = () => {
                               setContent(event.target.value)
                           }}/>
             </div>
-
-            <p>{title}</p>
-            <p>{author}</p>
-            <p>{content}</p>
+            <button type="submit" className="btn btn-primary btn-sm">Add Entry</button>
         </form>
     );
 };
