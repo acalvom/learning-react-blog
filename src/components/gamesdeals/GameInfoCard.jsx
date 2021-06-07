@@ -4,7 +4,7 @@ const GameInfoCard = (props) => {
     const game = props.data;
     return (
         <div className="card my-2">
-            <img className="card-img-top" src={game.thumb} alt="Card image cap"/>
+            <img className="card-img-top" src={game.thumb} alt=""/>
             <div className="card-body">
                 <h5 className="card-title">{game.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">Game ID: {game.gameID}</h6>
