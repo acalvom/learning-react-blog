@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import './Home.css'
-import EntriesList from "./EntriesList";
+import EntriesList from "./blog/EntriesList";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {

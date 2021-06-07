@@ -1,5 +1,5 @@
 import React from 'react';
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import {useParams} from 'react-router-dom';
 import GameInfoCard from "./GameInfoCard";
 
