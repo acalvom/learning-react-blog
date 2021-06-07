@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 
 const NewEntryFormBlock = () => {
-    const [entry, setEntry] = useState( {title: '', author: 'acalvom', content:''});
+    const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
-        const entry = {title, author, content}
         console.log(entry);
+    }
+
+    const handleOnChange = (e) => {
+        // Tenemos que pasarle el id porque es la forma que tiene de identificar el input con los datos
+        setEntry({
+            ...entry,
+            [e.target.id]: e.target.value
+        });
     }
 
     return (
@@ -15,17 +22,13 @@ const NewEntryFormBlock = () => {
                 <label>Title</label>
                 <input type="text" className="form-control" id="title" required
                        value={entry.title}
-                       onChange={(event) => {
-                           setEntry({...entry, title: event.target.value})
-                       }}/>
+                       onChange={handleOnChange}/>
             </div>
             <div className="form-group">
                 <label htmlFor="author">Author</label>
                 <select className="form-control" id="author" required
                         value={entry.author}
-                        onChange={(event) => {
-                            setEntry({...entry, author: event.target.value})
-                        }}>
+                        onChange={handleOnChange}>
                     <option>acalvom</option>
                     <option>acm</option>
                 </select>
@@ -34,9 +37,7 @@ const NewEntryFormBlock = () => {
                 <label>Content</label>
                 <textarea className="form-control" id="content" rows="3" required
                           value={entry.content}
-                          onChange={(event) => {
-                              setEntry({...entry, content: event.target.value})
-                          }}/>
+                          onChange={handleOnChange}/>
             </div>
             <button type="submit" className="btn btn-primary btn-sm">Add Entry</button>
         </form>
