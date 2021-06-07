@@ -3,9 +3,22 @@ import React, {useState} from 'react';
 const NewEntryFormBlock = () => {
     const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
 
+    const postData = async () => {
+        const response = await fetch('http://localhost:8000/blog', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(entry)
+        });
+        if (!response.ok)
+            throw new Error(`HTTP error status: ${response.status}`)
+    }
+
     const handleSubmitForm = (event) => {
         event.preventDefault();
-        console.log(entry);
+        postData()
+            .catch(e => {
+                console.log(e.message)
+            })
     }
 
     const handleOnChange = (e) => {
