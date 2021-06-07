@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 
 const NewEntryFormBlock = () => {
     const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
+    const [isPending, setIsPending] = useState(false);
 
     const postData = async () => {
+        setIsPending(true);
         const response = await fetch('http://localhost:8000/blog', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -16,9 +18,8 @@ const NewEntryFormBlock = () => {
     const handleSubmitForm = (event) => {
         event.preventDefault();
         postData()
-            .catch(e => {
-                console.log(e.message)
-            })
+            .catch(e => <div><h3>{e.message}</h3></div>)
+        setIsPending(false);
     }
 
     const handleOnChange = (e) => {
@@ -52,7 +53,8 @@ const NewEntryFormBlock = () => {
                           value={entry.content}
                           onChange={handleOnChange}/>
             </div>
-            <button type="submit" className="btn btn-primary btn-sm">Add Entry</button>
+            {!isPending && <button type="submit" className="btn btn-primary btn-sm">Add entry</button>}
+            {isPending && <button className="btn btn-primary btn-sm" disabled>Adding entry...</button>}
         </form>
     );
 };
