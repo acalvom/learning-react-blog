@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 const NewEntryFormBlock = () => {
     const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const postData = async () => {
         setIsPending(true);
@@ -20,6 +22,7 @@ const NewEntryFormBlock = () => {
         postData()
             .catch(e => <div><h3>{e.message}</h3></div>)
         setIsPending(false);
+        history.push('/')
     }
 
     const handleOnChange = (e) => {
