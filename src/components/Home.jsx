@@ -6,19 +6,13 @@ import useFetch from "../hooks/useFetch";
 const Home = () => {
     const {data: blog, isPending, fetchError} = useFetch('http://localhost:8000/blog');
 
-    const handleDeleteClick = (id) => {
-        // Esta función no tiene mucho sentido ahora porque los datos están en una BD
-        console.log(id)
-        return (blog.filter(item => item.id !== id))
-    }
-
     return (
         <Fragment>
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
                         {isPending && <div><h2>Fetching data...</h2></div>}
-                        {blog && <EntriesList entries={blog} delete={handleDeleteClick} pageTitle={"Blog Entries"}/>}
+                        {blog && <EntriesList entries={blog} pageTitle={"Blog Entries"}/>}
                         {fetchError && <div><h3>{fetchError}</h3></div>}
                     </div>
                 </div>
