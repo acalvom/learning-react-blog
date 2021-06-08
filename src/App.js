@@ -8,6 +8,7 @@ import GameDealDetail from "./components/gamesdeals/GameDealDetail";
 import EntryDetail from "./components/blog/EntryDetail";
 import './App.css'
 import NewEntryFormBlock from "./components/blog/NewEntryFormBlock";
+import NotFound from "./components/blog/NotFound";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/new-entry"><NewEntryFormBlock/></Route>
                     <Route exact path="/games-deals"><GamesDeals/></Route>
                     <Route path="/games-deals/:id"><GameDealDetail/></Route>
+                    <Route path="/*"><NotFound/></Route>
                 </Switch>
             </div>
         </Router>
