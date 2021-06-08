@@ -4,11 +4,25 @@ const NewEntryForm = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('acalvom');
     const [content, setContent] = useState('');
+    const [isPending, setIsPending] = useState(false);
+
+    const postData = async (data) => {
+        setIsPending(true);
+        const response = await fetch('http://localhost:8000/blog', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+        if (!response.ok)
+            throw new Error(`HTTP error status: ${response.status}`)
+    }
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
         const entry = {title, author, content}
-        console.log(entry);
+        postData(entry)
+            .catch(e => <div><h3>{e.message}</h3></div>)
+        setIsPending(false);
     }
 
     return (
@@ -40,7 +54,8 @@ const NewEntryForm = () => {
                               setContent(event.target.value)
                           }}/>
             </div>
-            <button type="submit" className="btn btn-primary btn-sm">Add Entry</button>
+            {!isPending && <button type="submit" className="btn btn-primary btn-sm">Add entry</button>}
+            {isPending && <button className="btn btn-primary btn-sm" disabled>Adding entry...</button>}
         </form>
     );
 };
