@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
 
 const NewEntryFormBlock = () => {
     const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
+        dispatch({type: 'ADD_ENTRY', payload: entry});
         history.push('/');
     }
 

@@ -7,6 +7,7 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
+    console.log(action)
     return state;
 };
 
