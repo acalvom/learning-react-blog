@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import './Home.css'
-import EntriesList from "./blog/EntriesList";
+import EntriesList from "./EntriesList";
 import{useSelector} from "react-redux";
 
 
