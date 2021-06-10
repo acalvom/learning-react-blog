@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 const initState = {
     entries: [
         {id: 0, author: "acalvom", title: "Welcome", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat accumsan tellus, vel imperdiet elit tempor vel. Integer scelerisque vulputate arcu, non pellentesque diam congue facilisis. Donec a aliquet velit. Aliquam feugiat velit a enim varius dapibus. Sed in ex sagittis, posuere enim sit amet, ullamcorper leo. Integer in augue iaculis, feugiat neque in, laoreet est. Donec ullamcorper mi sit amet consectetur vestibulum. Donec laoreet vitae nisi eget lobortis.\n\nCurabitur ut lobortis turpis. Mauris sed scelerisque justo. Vestibulum maximus libero quam. Curabitur elementum lectus nulla, iaculis finibus velit dictum at. Integer porttitor eget massa ac accumsan. Nulla quis diam in diam aliquam aliquet a non purus. Nam auctor mauris quis faucibus faucibus. Ut suscipit placerat sapien et facilisis. Cras sed placerat purus, ac dapibus nisi. Integer quis augue malesuada, faucibus nisl eget, efficitur nibh. In sapien nulla, suscipit ut tempus ac, fermentum eget eros. Nulla cursus tristique felis. Cras tempus leo ut risus dignissim, quis vulputate diam semper. Phasellus blandit, nisl vitae feugiat consectetur, sapien purus pellentesque orci, eget euismod dolor nibh sit amet nibh. Maecenas pharetra purus ac accumsan lacinia. "},
@@ -7,10 +9,19 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
-    if (action.type === 'ADD_ENTRY'){
+    if (action.type === 'ADD_ENTRY') {
+        action.payload.id = uuidv4();
         return {
             ...state,
             entries: [...state.entries, action.payload]
+        }
+    } else if (action.type === 'DELETE_ENTRY') {
+        let newEntries = state.entries.filter(entry => {
+            return entry.id !== action.payload
+        })
+        return {
+            ...state,
+            entries: newEntries
         }
     }
     return state;
