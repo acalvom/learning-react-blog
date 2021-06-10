@@ -7,7 +7,12 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
-    console.log(action)
+    if (action.type === 'ADD_ENTRY'){
+        return {
+            ...state,
+            entries: [...state.entries, action.payload]
+        }
+    }
     return state;
 };
 
