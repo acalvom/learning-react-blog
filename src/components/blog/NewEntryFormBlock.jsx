@@ -3,30 +3,14 @@ import {useHistory} from 'react-router-dom';
 
 const NewEntryFormBlock = () => {
     const [entry, setEntry] = useState({title: '', author: 'acalvom', content: ''});
-    const [isPending, setIsPending] = useState(false);
     const history = useHistory();
-
-    const postData = async () => {
-        setIsPending(true);
-        const response = await fetch('http://localhost:8000/blog', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(entry)
-        });
-        if (!response.ok)
-            throw new Error(`HTTP error status: ${response.status}`)
-    }
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
-        postData()
-            .catch(e => <div><h3>{e.message}</h3></div>)
-        setIsPending(false);
-        history.push('/')
+        history.push('/');
     }
 
     const handleOnChange = (e) => {
-        // Tenemos que pasarle el id porque es la forma que tiene de identificar el input con los datos
         setEntry({
             ...entry,
             [e.target.id]: e.target.value
@@ -56,8 +40,7 @@ const NewEntryFormBlock = () => {
                           value={entry.content}
                           onChange={handleOnChange}/>
             </div>
-            {!isPending && <button type="submit" className="btn btn-primary btn-sm">Add entry</button>}
-            {isPending && <button className="btn btn-primary btn-sm" disabled>Adding entry...</button>}
+            <button type="submit" className="btn btn-primary btn-sm">Add entry</button>
         </form>
     );
 };
