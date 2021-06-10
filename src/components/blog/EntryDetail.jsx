@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 const EntryDetail = () => {
     const {id} = useParams();
-    const entry = useSelector((state) => state.blog[id]);
+    const entry = useSelector((state) => state.blog.entries[id]);
 
     return (
         <div className="entry-details">
