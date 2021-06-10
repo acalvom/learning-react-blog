@@ -1,11 +1,10 @@
 import React, {Fragment} from 'react';
 import './Home.css'
 import EntriesList from "./EntriesList";
-import{useSelector} from "react-redux";
-
+import {useSelector} from "react-redux";
 
 const Home = () => {
-    const blog = useSelector(state => state.blog);
+    const blog = useSelector(state => state.blog.entries);
 
     return (
         <Fragment>
