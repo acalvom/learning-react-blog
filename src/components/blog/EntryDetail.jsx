@@ -1,6 +1,7 @@
 import React from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
+import {deleteEntry} from "../../store/blogActions";
 
 const EntryDetail = () => {
     const {id} = useParams();
@@ -11,7 +12,7 @@ const EntryDetail = () => {
     const history = useHistory();
 
     const handleDeleteEntry = () => {
-        dispatch({type: 'DELETE_ENTRY', payload: id});
+        dispatch(deleteEntry(id));
         history.push('/');
     }
 
