@@ -1,3 +1,9 @@
+export const getBlog = () => {
+    return {
+        type: 'GET_BLOG',
+    }
+}
+
 export const deleteEntry = (id) => {
     return {
         type: 'DELETE_ENTRY',
