@@ -8,7 +8,7 @@ const blogReducer = (state = initState, action) => {
     if (action.type === 'GET_BLOG') {
         return {
             ...state,
-            entries: state.entries
+            entries: action.payload
         }
     } else if (action.type === 'ADD_ENTRY') {
         action.payload.id = uuidv4();

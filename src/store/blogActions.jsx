@@ -1,6 +1,14 @@
-export const getBlog = () => {
-    return {
-        type: 'GET_BLOG',
+import axios from "axios";
+
+export const getBlog = () => async (dispatch) => {
+    try {
+        const res = await axios.get('http://localhost:8000/blog')
+        dispatch({
+            type: 'GET_BLOG',
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error)
     }
 }
 
